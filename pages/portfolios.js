@@ -15,6 +15,9 @@ class Portfolios extends React.Component {
     return { posts: posts.slice(0, 10) };
   }
 
+  renderPosts = posts =>
+    posts.map(post => <li key={post.id}>{post.id}</li>)
+
   render() {
     const { posts } = this.props
     return (
@@ -22,9 +25,7 @@ class Portfolios extends React.Component {
         <div>
           This is Protfolio page
           <ul>
-            {posts.map(post =>
-              <li key={post.id}>{post.id}</li>
-            )}
+            {this.renderPosts(posts)}
           </ul>
         </div>
       </BaseLayout>
