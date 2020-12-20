@@ -1,4 +1,6 @@
 import '../styles/main.scss'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App({ Component, pageProps }) {
   return <Component {...pageProps} />
