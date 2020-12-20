@@ -3,7 +3,6 @@ import BaseLayout from '../components/layouts/BaseLayout'
 import { Container } from "reactstrap";
 class Index extends React.Component {
   render() {
-    console.log('aaa')
     return (
       <BaseLayout>
         <Container>
