@@ -1,28 +1,62 @@
-import React from 'react'
-import Link from 'next/link'
+import React from 'react';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  NavbarText
+} from 'reactstrap';
 
-class Header extends React.Component {
+import Link from 'next/link';
+
+const BsNavLink = ({title, href}) => {
+  return (
+    <Link href={href}>
+      <a className='nav-link'>
+        {title}
+      </a>
+    </Link>
+  )
+}
+export default class Header extends React.Component {
+
+  state = {isOpen: false}
+  toggle = () => this.setState({isOpen: !this.state.isOpen})
+
   render() {
     return (
       <div>
-        <Link href="/">
-          <a>Home</a>
-        </Link>
-        <Link href="/about">
-          <a>About</a>
-        </Link>
-        <Link href="/portfolios">
-          <a>Portfolios</a>
-        </Link>
-        <Link href="/blogs">
-          <a>Blogs</a>
-        </Link>
-        <Link href="/cv">
-          <a>CV</a>
-        </Link>
+        <Navbar color="light" light expand="md">
+          <NavbarBrand href="/">reactstrap</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.isOpen} navbar>
+            <Nav className="mr-auto" navbar>
+              <NavItem>
+                <BsNavLink title='Home' href='/' />
+              </NavItem>
+              <NavItem>
+                <BsNavLink title='About' href='/about' />
+              </NavItem>
+              <NavItem>
+                <BsNavLink title='Portfolios' href='/portfolios' />
+              </NavItem>
+              <NavItem>
+                <BsNavLink title='Blogs' href='/blogs' />
+              </NavItem>
+              <NavItem>
+                <BsNavLink title='CV' href='/cv' />
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
       </div>
     )
   }
 }
-
-export default Header;
