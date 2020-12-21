@@ -1,6 +1,6 @@
 import React from 'react'
-import '../styles/main.scss'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/main.scss'
 
 class App extends React.Component {
 
