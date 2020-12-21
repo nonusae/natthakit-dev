@@ -24,6 +24,14 @@ const BsNavLink = ({title, href}) => {
     </Link>
   )
 }
+
+const BsNavBrand = () =>
+  <Link href="/">
+    <a className='navbar-brand port-navbar-brand'>
+      Natthakit Iewprasert
+    </a>
+  </Link>
+
 const Header = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -35,16 +43,10 @@ const Header = () => {
         className="port-navbar port-default absolute"
         color="transparent"
         dark
-        expand="md"
-      >
-        <NavbarBrand>
-          <Link href="/">
-            <a className='port-navbar-brand'>
-              Natthakit Iewprasert
-            </a>
-        </Link>
-        </NavbarBrand>
+        expand="md" >
+        <BsNavBrand />
         <NavbarToggler onClick={toggle} />
+
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem className='port-navbar-item'>
