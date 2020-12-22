@@ -1,7 +1,7 @@
 import BaseLayout from 'components/layouts/BaseLayout';
 import BasePage from 'components/BasePage';
 import axios from 'axios'
-import { useGetData } from 'actions';
+// import { useGetData } from 'actions';
 import { useRouter } from "next/router";
 
 const Portfolio = () => {
