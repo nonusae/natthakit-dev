@@ -66,7 +66,7 @@ const Header = () => {
             </NavItem>
           </Nav>
 
-          <Nav Navbar>
+          <Nav>
             <NavItem className='port-navbar-item'>
               <LoginLink />
             </NavItem>
