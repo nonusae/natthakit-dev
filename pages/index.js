@@ -12,10 +12,13 @@ const ROLES = [
   'React.js'];
 
 const Index = () => {
-  const { data, error, loading } = useGetUser();
+  const { data: dataUser, loading: loadingUser } = useGetUser();
 
   return (
-    <BaseLayout className="cover">
+    <BaseLayout
+      user={dataUser}
+      loading={loadingUser}
+      className="cover" >
       <div className="main-section">
         <div className="background-image">
           <img src="/images/background-index.png" />

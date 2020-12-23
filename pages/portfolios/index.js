@@ -2,9 +2,11 @@ import BaseLayout from 'components/layouts/BaseLayout';
 import BasePage from 'components/BasePage';
 import Link from 'next/link';
 import { useGetPosts } from 'actions';
+import { useGetUser } from 'actions/user';
 
 const Portfolios = () => {
   const { data: posts, error, loading } = useGetPosts();
+  const { data: dataUser, loading: loadingUser } = useGetUser();
 
   const renderPosts = (posts) => {
     return posts.map(post =>
@@ -19,7 +21,7 @@ const Portfolios = () => {
   }
 
   return (
-    <BaseLayout>
+    <BaseLayout user={dataUser} loading={loadingUser}>
       <BasePage>
         <h1>I am Portfolio Page</h1>
         {
