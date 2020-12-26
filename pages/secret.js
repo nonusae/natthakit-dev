@@ -3,6 +3,7 @@ import BaseLayout from 'components/layouts/BaseLayout'
 import BasePage from 'components/BasePage';
 import { useGetUser } from 'actions/user';
 import Redirect from 'components/shared/redirect'
+import withAuth from 'hoc/withAuth';
 
 
 const Secret = () => {
@@ -29,5 +30,4 @@ const Secret = () => {
   }
 }
 
-
-export default Secret;
+export default withAuth(Secret) ;
