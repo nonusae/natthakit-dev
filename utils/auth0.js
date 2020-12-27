@@ -28,3 +28,19 @@ export const authorizeUser = async (req, res) => {
   }
 }
 
+export const withAuth = () => {
+  return async ({req, res}) => {
+    const session = await auth0.getSession(req)
+    if (!session || !session.user) {
+      res.writeHEAD(302, {
+        Location: 'api/v1/login'
+      })
+      res.end();
+
+      return { props: {} }
+    }
+
+    return { props: {user: session.user} }
+  }
+}
+

@@ -1,7 +1,7 @@
 import React from 'react'
 import BaseLayout from 'components/layouts/BaseLayout'
 import BasePage from 'components/BasePage';
-import { authorizeUser } from 'utils/auth0';
+import { authorizeUser, withAuth } from 'utils/auth0';
 
 const SecretSSR = ({user}) => {
   return (
@@ -17,12 +17,6 @@ const SecretSSR = ({user}) => {
   )
 }
 
-export const getServerSideProps = async({req, res}) => {
-  const user = await authorizeUser(req, res)
-
-  return {
-    props: { user }
-  }
-}
+export const getServerSideProps = withAuth();
 
 export default SecretSSR ;
