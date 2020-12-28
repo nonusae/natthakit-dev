@@ -63,18 +63,20 @@ const Header = ({user, loading}) => {
             <NavItem className='port-navbar-item'>
               <BsNavLink title='CV' href='/cv' />
             </NavItem>
-            <NavItem className='port-navbar-item'>
-              <BsNavLink title='Secret' href='/secret' />
-            </NavItem>
-            <NavItem className='port-navbar-item'>
-              <BsNavLink title='SecretSSR' href='/secretssr' />
-            </NavItem>
-            <NavItem className='port-navbar-item'>
-              <BsNavLink title='Admin' href='/admin' />
-            </NavItem>
-            <NavItem className='port-navbar-item'>
-              <BsNavLink title='AdminSSR' href='/adminssr' />
-            </NavItem>
+            {/*
+              <NavItem className='port-navbar-item'>
+                <BsNavLink title='Secret' href='/secret' />
+              </NavItem>
+              <NavItem className='port-navbar-item'>
+                <BsNavLink title='SecretSSR' href='/secretssr' />
+              </NavItem>
+              <NavItem className='port-navbar-item'>
+                <BsNavLink title='Admin' href='/admin' />
+              </NavItem>
+              <NavItem className='port-navbar-item'>
+                <BsNavLink title='Admin' href='/adminssr' />
+              </NavItem>
+            */}
           </Nav>
 
           <Nav navbar>
