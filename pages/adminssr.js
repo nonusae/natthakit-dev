@@ -3,13 +3,13 @@ import BaseLayout from 'components/layouts/BaseLayout'
 import BasePage from 'components/BasePage';
 import { authorizeUser, withAuth } from 'utils/auth0';
 
-const SecretSSR = ({user}) => {
+const AdminSRR = ({user}) => {
   return (
     <BaseLayout user={user} loading={false}>
       <BasePage>
         <div>
           <h1>
-            This is Secret page - {user && user.name}
+            This is AdminSSR page - {user && user.name}
           </h1>
         </div>
       </BasePage>
@@ -17,6 +17,6 @@ const SecretSSR = ({user}) => {
   )
 }
 
-export const getServerSideProps = withAuth()();
+export const getServerSideProps = withAuth()('admin');
 
-export default SecretSSR ;
+export default AdminSRR ;

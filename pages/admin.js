@@ -4,13 +4,13 @@ import BasePage from 'components/BasePage';
 import withAuth from 'hoc/withAuth';
 
 
-const Secret = ({user, loading}) => {
+const Admin = ({user, loading}) => {
   return (
     <BaseLayout user={user} loading={loading}>
       <BasePage>
         <div>
           <h1>
-            This is Secret page - {user.name}
+            This is Admin page - {user.name}
           </h1>
         </div>
       </BasePage>
@@ -18,4 +18,4 @@ const Secret = ({user, loading}) => {
   )
 }
 
-export default withAuth(Secret)() ;
+export default withAuth(Admin)('admin') ;
