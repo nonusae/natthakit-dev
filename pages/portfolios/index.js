@@ -11,15 +11,18 @@ const Portfolios = ({portfolios}) => {
 
   return (
     <BaseLayout user={dataUser} loading={loadingUser}>
-      <BasePage className='portfolio-page'>
-          <Row>
-            { portfolios.map(portfolio => {
-                return <Col key={portfolio.attributes.id} md="4">
-                  <PortfolioCard {...portfolio.attributes} />
-                </Col>
-              })
-            }
-          </Row>
+      <BasePage
+        header='Portfolio'
+        className='portfolio-page'
+      >
+        <Row>
+          { portfolios.map(portfolio => {
+              return <Col key={portfolio.attributes.id} md="4">
+                <PortfolioCard {...portfolio.attributes} />
+              </Col>
+            })
+          }
+        </Row>
       </BasePage>
     </BaseLayout>
   )
