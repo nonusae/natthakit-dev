@@ -1,5 +1,4 @@
-
-import useSWR from 'swr';
+import { useState } from "react";
 
 export const fetcher = (url) =>
   fetch(url).then(async res => {
@@ -10,3 +9,28 @@ export const fetcher = (url) =>
       return result;
     }
   });
+
+export function useApiHandler(apiCall) {
+  const [reqState, setReqState] = useState({
+    error: null,
+    data: null,
+    lodaing: false,
+  })
+
+  const handler = async (...data) => {
+    setReqState({error: null, data:null, loading: true});
+    try {
+      const json = await apiCall(...data);
+      setReqState({error: null, data: json.data.data, loading: false})
+    } catch (e) {
+      console.log(e);
+      const message = (e.response && e.response.message) || 'Oops, somethings went wrong.'
+      setReqState({error: message, data: null, loading: false})
+    }
+  }
+
+  return [
+    handler,
+    {...reqState}
+  ]
+}

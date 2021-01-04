@@ -4,9 +4,11 @@ import BasePage from 'components/BasePage';
 import withAuth from 'hoc/withAuth';
 import { Row, Col } from "reactstrap";
 import PorfolioForm from 'components/PortfolioForm';
-import { createPortfolio } from 'actions/portfolios';
+import { useCreatePortfolio } from 'actions/portfolios';
 
 const PortfoliosNew = ({user, loading: userLoading}) => {
+  const [createPortfolio, {data, loading, error}] = useCreatePortfolio();
+
   const _createPortfolio = (data) => {
     createPortfolio(data)
   }
