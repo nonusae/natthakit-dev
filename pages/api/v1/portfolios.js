@@ -7,6 +7,7 @@ export default async function createPortfolio(req, res) {
     const json = await new PortfoliosApi(accessToken).createPortfolio(req.body);
     return res.json(json.data)
   } catch (error) {
-    return res.status(error.status || 400).end(error.message)
+    // Todo: Map error array
+    return res.status(error.response.status || 422).end(error.response.data.errors[0].detail)
   }
 }

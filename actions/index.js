@@ -14,7 +14,7 @@ export function useApiHandler(apiCall) {
   const [reqState, setReqState] = useState({
     error: null,
     data: null,
-    lodaing: false,
+    loading: false,
   })
 
   const handler = async (...data) => {
@@ -23,8 +23,7 @@ export function useApiHandler(apiCall) {
       const json = await apiCall(...data);
       setReqState({error: null, data: json.data.data, loading: false})
     } catch (e) {
-      console.log(e);
-      const message = (e.response && e.response.message) || 'Oops, somethings went wrong.'
+      const message = (e.response && e.response.data) || 'Oops, somethings went wrong.'
       setReqState({error: message, data: null, loading: false})
     }
   }
