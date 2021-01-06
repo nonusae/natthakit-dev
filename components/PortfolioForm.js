@@ -13,6 +13,12 @@ const PortfolioForm = ({ onSubmit, initialData={}}) => {
     register({ name: 'endDate' })
   }, [register])
 
+  useEffect(() => {
+    const { startDate, endDate } = initialData;
+    if (startDate) { setStartDate(new Date(startDate))}
+    if (endDate) { setEndDate(new Date(endDate))}
+  }, [initialData])
+
   const handleDateChange = (dateType, setDate) => (date) => {
     setDate(date)
     setValue(dateType, date)

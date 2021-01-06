@@ -1,11 +1,9 @@
 import BaseLayout from 'components/layouts/BaseLayout';
 import BasePage from 'components/BasePage';
-import { useRouter } from "next/router";
 import { useGetUser } from 'actions/user';
 import PortfoliosApi from "lib/api/portfolios";
 
 const Portfolio = ({portfolio}) => {
-  const router = useRouter();
   const { data: dataUser, loading: loadingUser } = useGetUser();
 
   return (
@@ -32,8 +30,8 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({params}) {
   const json = await new PortfoliosApi().getById(params.id)
-  const portfolios = json.data.data;
-  return { props: {portfolios} }
+  const portfolio = json.data.data.attributes;
+  return { props: {portfolio} }
 }
 
 export default Portfolio;
