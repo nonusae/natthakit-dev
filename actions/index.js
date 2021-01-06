@@ -19,6 +19,7 @@ export function useApiHandler(apiCall) {
 
   const handler = async (...data) => {
     setReqState({error: null, data:null, loading: true});
+
     try {
       const json = await apiCall(...data);
       setReqState({error: null, data: json.data.data, loading: false})

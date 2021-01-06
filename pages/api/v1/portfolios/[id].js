@@ -8,8 +8,14 @@ export default async function handlePortfolio(req, res) {
   }
 
   if (req.method === 'PATCH') {
-    const { accessToken } = await auth0.getSession(req)
-    const json = await new PortfoliosApi(accessToken).update(req.query.id, req.body)
-    return res.json(json.data)
+    try {
+      const { accessToken } = await auth0.getSession(req)
+      const json = await new PortfoliosApi(accessToken).update(req.query.id, req.body)
+      return res.json(json.data)
+    } catch (error) {
+      // Todo: Map error array
+      // Todo: Map this into reusable function with create
+      return res.status(error.response.status || 422).end(error.response.data.errors[0].detail)
+    }
   }
 }

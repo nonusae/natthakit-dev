@@ -27,6 +27,7 @@ const PortfolioEdit = ({user}) => {
                 initialData={portfolio.data.attributes}
               />
             }
+            { error && <div className="alert alert-danger mt-2">{error}</div>}
           </Col>
         </Row>
       </BasePage>
