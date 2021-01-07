@@ -7,10 +7,21 @@ import { useGetUser } from 'actions/user';
 import PortfoliosApi from 'lib/api/portfolios';
 import PortfolioCard from 'components/portfolioCard';
 import { isAuthorized } from "utils/auth0";
+import { useDeletePortfolio } from 'actions/portfolios'
 
 const Portfolios = ({portfolios}) => {
   const router = useRouter();
   const { data: dataUser, loading: loadingUser } = useGetUser();
+  const [deletePortfolio, {data, error}] = useDeletePortfolio();
+
+  const _deletePortfolio = async (e,id) => {
+    e.stopPropagation();
+
+    const isConfirm = confirm('Are you sure you want to delete this portfolio?')
+    if (isConfirm) {
+      await deletePortfolio(id)
+    }
+  }
 
   return (
     <BaseLayout user={dataUser} loading={loadingUser}>
@@ -37,7 +48,9 @@ const Portfolios = ({portfolios}) => {
                           router.push('/portfolios/[id]/edit', `/portfolios/${portfolio.attributes.id}/edit`)
                         }
                       }>Edit</Button>
-                      <Button color='danger'>Delete</Button>
+                      <Button color='danger'
+                        onClick={ (e) => _deletePortfolio(e, portfolio.attributes.id)}
+                      >Delete</Button>
                     </>
                   }
                 </PortfolioCard>
