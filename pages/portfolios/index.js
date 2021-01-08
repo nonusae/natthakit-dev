@@ -1,3 +1,4 @@
+import {useState} from 'react'
 import BaseLayout from 'components/layouts/BaseLayout';
 import BasePage from 'components/BasePage';
 import { Row, Col, Button } from 'reactstrap';
@@ -8,18 +9,28 @@ import PortfoliosApi from 'lib/api/portfolios';
 import PortfolioCard from 'components/portfolioCard';
 import { isAuthorized } from "utils/auth0";
 import { useDeletePortfolio } from 'actions/portfolios'
+import { toast } from 'react-toastify';
 
-const Portfolios = ({portfolios}) => {
+const Portfolios = ({portfolios: initialPortfolios}) => {
   const router = useRouter();
+  const [portfolios, setPortfolios] = useState(initialPortfolios)
   const { data: dataUser, loading: loadingUser } = useGetUser();
   const [deletePortfolio, {data, error}] = useDeletePortfolio();
 
-  const _deletePortfolio = async (e,id) => {
+  const _deletePortfolio = async (e, id) => {
     e.stopPropagation();
+    const isConfirm = confirm('Are you sure you want to delete this portfolio?');
 
-    const isConfirm = confirm('Are you sure you want to delete this portfolio?')
     if (isConfirm) {
-      await deletePortfolio(id)
+      try {
+        await deletePortfolio(id)
+        toast.success('Portfolio has been deleted', {autoClose: 1000})
+
+        const newPortfolios = portfolios.filter((portfolio) => portfolio.id != id )
+        setPortfolios(newPortfolios)
+      } catch(_) {
+        toast.error('Failed to delete portfolio', {autoClose: 2000})
+      }
     }
   }
 
