@@ -10,8 +10,8 @@ import {
   DropdownMenu,
   DropdownItem
 } from 'reactstrap';
-
 import Link from 'next/link';
+import { isAuthorized } from 'utils/auth0';
 
 const BsNavLink = ({title, href, className=''}) => {
   return (
@@ -49,16 +49,16 @@ const AdminMenu = () => {
       <DropdownToggle
         className='port-dropdown-toggle'
         nav
-        carret
+        caret
       >
         Admin
       </DropdownToggle>
-      <DropdownMenu>
-        <DropdownItem>
+      <DropdownMenu right>
+        <DropdownItem className='dropdown-item'>
           <BsNavLink
             className="port-dropdown-item"
             title='Create portfolio'
-            href='/portfolio/new'
+            href='/portfolios/new'
           />
         </DropdownItem>
       </DropdownMenu>
@@ -103,7 +103,7 @@ const Header = ({user, loading, className}) => {
               <>
                 { user &&
                   <>
-                    <AdminMenu />
+                    { isAuthorized(user, 'admin') && <AdminMenu /> }
                     <NavItem className='port-navbar-item'>
                       <LogoutLink />
                     </NavItem>
