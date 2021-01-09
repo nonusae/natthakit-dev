@@ -78,7 +78,8 @@ export async function getStaticProps() {
   const json = await new PortfoliosApi().getAll();
   const portfolios = json.data.data;
   return {
-    props: { portfolios }
+    props: { portfolios },
+    revalidate: 1
   }
 }
 
