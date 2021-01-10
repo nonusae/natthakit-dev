@@ -10,17 +10,17 @@ import {
   DropdownMenu,
   DropdownItem
 } from 'reactstrap';
+import ActiveLink from 'components/shared/ActiveLink'
 import Link from 'next/link';
 import { isAuthorized } from 'utils/auth0';
-import ReactResizeDetector from 'react-resize-detector';
 
 const BsNavLink = ({title, href, className=''}) => {
   return (
-    <Link href={href}>
+    <ActiveLink activeClassName='active' href={href}>
       <a className={`nav-link port-navbar-link ${className}`}>
         {title}
       </a>
-    </Link>
+    </ActiveLink>
   )
 }
 
@@ -72,57 +72,52 @@ const Header = ({user, loading, className}) => {
   const toggle = () => setIsOpen(!isOpen)
   // TODO: use new react hook way for react resize detector
   return (
-    <ReactResizeDetector handleWidth>
-      {({width}) =>
-        <Navbar
-          className={`port-navbar port-default absolute ${className} ${ (width < 768) && isOpen ? 'is-open' : 'is-closed'}`}
-          dark
-          expand="md" >
-          <BsNavBrand />
-          <NavbarToggler onClick={toggle} />
+    <Navbar
+      className={`port-navbar port-default absolute ${className} ${isOpen ? 'is-open' : 'is-closed'}`}
+      dark
+      expand="md">
+      <BsNavBrand />
+      <NavbarToggler onClick={toggle} />
+      <Collapse isOpen={isOpen} navbar>
+        <Nav className="mr-auto" navbar>
+          <NavItem className='port-navbar-item'>
+            <BsNavLink title='Home' href='/' />
+          </NavItem>
+          <NavItem className='port-navbar-item'>
+            <BsNavLink title='About' href='/about' />
+          </NavItem>
+          <NavItem className='port-navbar-item'>
+            <BsNavLink title='Portfolios' href='/portfolios' />
+          </NavItem>
+          <NavItem className='port-navbar-item'>
+            <BsNavLink title='Blogs' href='/blogs' />
+          </NavItem>
+          <NavItem className='port-navbar-item'>
+            <BsNavLink title='CV' href='/cv' />
+          </NavItem>
+        </Nav>
 
-          <Collapse isOpen={isOpen} navbar>
-            <Nav className="mr-auto" navbar>
-              <NavItem className='port-navbar-item'>
-                <BsNavLink title='Home' href='/' />
-              </NavItem>
-              <NavItem className='port-navbar-item'>
-                <BsNavLink title='About' href='/about' />
-              </NavItem>
-              <NavItem className='port-navbar-item'>
-                <BsNavLink title='Portfolios' href='/portfolios' />
-              </NavItem>
-              <NavItem className='port-navbar-item'>
-                <BsNavLink title='Blogs' href='/blogs' />
-              </NavItem>
-              <NavItem className='port-navbar-item'>
-                <BsNavLink title='CV' href='/cv' />
-              </NavItem>
-            </Nav>
-
-            <Nav navbar>
-              {!loading &&
+        <Nav navbar>
+          {!loading &&
+            <>
+              { user &&
                 <>
-                  { user &&
-                    <>
-                      { isAuthorized(user, 'admin') && <AdminMenu /> }
-                      <NavItem className='port-navbar-item'>
-                        <LogoutLink />
-                      </NavItem>
-                    </>
-                  }
-                  { !user &&
-                    <NavItem className='port-navbar-item'>
-                      <LoginLink />
-                    </NavItem>
-                  }
+                  { isAuthorized(user, 'admin') && <AdminMenu /> }
+                  <NavItem className='port-navbar-item'>
+                    <LogoutLink />
+                  </NavItem>
                 </>
               }
-            </Nav>
-          </Collapse>
-        </Navbar>
-      }
-    </ReactResizeDetector>
+              { !user &&
+                <NavItem className='port-navbar-item'>
+                  <LoginLink />
+                </NavItem>
+              }
+            </>
+          }
+        </Nav>
+      </Collapse>
+    </Navbar>
   )
 }
 
