@@ -70,7 +70,7 @@ const AdminMenu = () => {
 const Header = ({user, loading, className}) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const toggle = () => setIsOpen(!isOpen)
-
+  // TODO: use new react hook way for react resize detector
   return (
     <ReactResizeDetector handleWidth>
       {({width}) =>
