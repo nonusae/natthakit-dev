@@ -25,6 +25,7 @@ const BsNavLink = ({title, href, className=''}) => {
 }
 
 const BsNavBrand = () =>
+  // TODO: Change text to Natthakit I. when screen under 374
   <Link href="/">
     <a className='navbar-brand port-navbar-brand'>
       Natthakit Iewprasert
@@ -75,7 +76,7 @@ const Header = ({user, loading, className}) => {
     <Navbar
       className={`port-navbar port-default absolute ${className} ${isOpen ? 'is-open' : 'is-closed'}`}
       dark
-      expand="md">
+      expand="lg">
       <BsNavBrand />
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
