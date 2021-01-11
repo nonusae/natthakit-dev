@@ -79,7 +79,7 @@ export async function getStaticProps() {
   const portfolios = json.data.data;
   return {
     props: { portfolios },
-    revalidate: 1
+    revalidate: 10
   }
 }
 
