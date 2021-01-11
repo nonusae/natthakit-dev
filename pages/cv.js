@@ -2,6 +2,7 @@ import React from 'react'
 import BaseLayout from 'components/layouts/BaseLayout'
 import BasePage from 'components/BasePage';
 import { useGetUser } from 'actions/user';
+import { Row, Col } from 'reactstrap';
 
 const CV = () => {
   const { data: dataUser, loading: loadingUser } = useGetUser();
@@ -9,9 +10,11 @@ const CV = () => {
   return (
     <BaseLayout user={dataUser} loading={loadingUser}>
       <BasePage>
-        <div>
-          This is CV page
-        </div>
+        <Row>
+          <Col md={{size: 8, offset: 2}}>
+            <iframe style={{width: '100%', height: '800px'}} src="/NatthakitCV.pdf" frameborder="0" />
+          </Col>
+        </Row>
       </BasePage>
     </BaseLayout>
   )
