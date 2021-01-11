@@ -1,4 +1,3 @@
-import { Children } from 'react';
 import { Card, CardHeader, CardBody, CardText, CardTitle } from 'reactstrap';
 
 const PortfolioCard = ({id, title, jobTitle, location, description, children}) => {

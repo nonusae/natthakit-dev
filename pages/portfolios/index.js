@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useRouter } from "next/router";
 import { useGetUser } from 'actions/user';
 import PortfoliosApi from 'lib/api/portfolios';
-import PortfolioCard from 'components/portfolioCard';
+import PortfolioCard from 'components/PortfolioCard';
 import { isAuthorized } from "utils/auth0";
 import { useDeletePortfolio } from 'actions/portfolios'
 import { toast } from 'react-toastify';
