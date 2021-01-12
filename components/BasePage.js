@@ -2,6 +2,7 @@ import React from 'react';
 import { Container } from 'reactstrap';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 
 const PageHeader = ({header}) =>
   <div className="page-header">
@@ -42,14 +43,45 @@ const BasePage = props => {
           rel="canonical"
           href={`${process.env.BASE_URL}${canonicalPath ? canonicalPath : router.asPath}`} />
       </Head>
-      <div className={`${pageType} ${className}`}>
+      <motion.div
+        className={`${pageType} ${className}`}
+        layoutId='base-page'
+        initial={{x:2000, opacity: 0}}
+        animate={{x: 0, opacity: 1}}
+        transition={
+          {
+            type: 'spring',
+            stiffness: 50,
+            ease: 'backInOut'
+          }
+        }
+      >
         <Wrapper>
           { header && <PageHeader header={header} /> }
           {children}
         </Wrapper>
-      </div>
+      </motion.div>
     </>
   )
 }
 
 export default BasePage;
+
+
+
+      // <motion.div className={`${pageType} ${className}`}
+      //   initial={{x:2000, opacity: 0}}
+      //   animate={{x: 0, opacity: 1}}
+      //   transition={
+      //     {
+      //       type: 'spring',
+      //       stiffness: 50,
+      //       ease: 'backInOut'
+      //     }
+      //   }
+      // >
+      //   <Wrapper>
+      //     { header && <PageHeader header={header} /> }
+      //     {children}
+      //   </Wrapper>
+      // </motion.div>

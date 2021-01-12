@@ -13,6 +13,8 @@
     "bootstrap": "^4.4.1",
     "cross-env": "^7.0.2",
     "express": "^4.17.1",
+    "farmer-js": "^1.0.1",
+    "framer-motion": "^3.2.1",
     "moment": "^2.29.1",
     "next": "10.0.0",
     "next-routes": "^1.4.2",
