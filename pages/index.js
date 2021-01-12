@@ -15,30 +15,15 @@ const ROLES = [
 const Index = () => {
   const [isFlipping, setIsFlipping] = useState(false);
   const { data, loading } = useGetUser();
-  const flipInterval = useRef();
-
-  useEffect(() => {
-    startAnimation();
-    return () => flipInterval.current && clearInterval(flipInterval.current)
-  }, []);
-
-  const startAnimation = () => {
-    flipInterval.current = setInterval(() => {
-      setIsFlipping(prevFlipping => !prevFlipping);
-    }, 200000);
-  }
 
   return (
     <BaseLayout
       user={data}
       loading={loading}
       navClass="transparent"
-      className={`cover ${isFlipping ? 'cover-orange' : 'cover-blue'}`}>
+      className='cover'>
       <BasePage indexPage title="Portfolio - Filip Jerga">
         <div className="main-section">
-          <div className="background-image">
-            <img src="/images/background-index.png" />
-          </div>
           <Container>
             <Row>
               <Col md="6">
@@ -54,19 +39,6 @@ const Index = () => {
                         </div>
                       </div>
                       <div className="shadow-custom">
-                        <div className="shadow-inner"> </div>
-                      </div>
-                    </div>
-                    <div className="back">
-                      <div className="image image-2">
-                        <div className="hero-section-content">
-                          <h2>React and Next is Amazing!</h2>
-                          <div className="hero-section-content-intro">
-                            Software developer ready for a project of any type!
-                          </div>
-                        </div>
-                      </div>
-                      <div className="shadow-custom shadow-custom-orange">
                         <div className="shadow-inner"> </div>
                       </div>
                     </div>
