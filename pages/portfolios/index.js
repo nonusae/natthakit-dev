@@ -35,7 +35,11 @@ const Portfolios = ({portfolios: initialPortfolios}) => {
   }
 
   return (
-    <BaseLayout user={dataUser} loading={loadingUser}>
+    <BaseLayout
+      navClass='transparent'
+      user={dataUser}
+      loading={loadingUser}
+    >
       <BasePage
         header='Portfolio'
         className='portfolio-page'

@@ -24,6 +24,7 @@ const About = () => {
 
   return (
     <BaseLayout
+      navClass='transparent'
       user={dataUser}
       loading={loadingUser}
     >

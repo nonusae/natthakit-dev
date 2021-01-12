@@ -26,14 +26,11 @@ const BsNavLink = ({title, href, className=''}) => {
   )
 }
 
-const BsNavBrand = ({currentNavWidth}) =>
+const BsNavBrand = () =>
   // TODO: Change text to Natthakit I. when screen under 374
   <Link href="/">
     <a className='navbar-brand port-navbar-brand'>
-      {(currentNavWidth > 410)
-        ? 'Natthakit Iewprasert'
-        : 'Natthakit I.'
-      }
+        Natthakit Iewprasert
     </a>
   </Link>
 
@@ -86,7 +83,7 @@ const Header = ({user, loading, className, width}) => {
             className={`port-navbar port-default absolute ${className} ${width < 912 && isOpen ? 'is-open' : 'is-closed'}`}
             dark
             expand="lg">
-            <BsNavBrand currentNavWidth={width} />
+            <BsNavBrand />
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
               <Nav className="mr-auto" navbar>
@@ -98,9 +95,6 @@ const Header = ({user, loading, className, width}) => {
                 </NavItem>
                 <NavItem className='port-navbar-item'>
                   <BsNavLink title='Portfolios' href='/portfolios' />
-                </NavItem>
-                <NavItem className='port-navbar-item'>
-                  <BsNavLink title='Blogs' href='/blogs' />
                 </NavItem>
                 <NavItem className='port-navbar-item'>
                   <BsNavLink title='CV' href='/cv' />

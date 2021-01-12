@@ -8,7 +8,11 @@ const CV = () => {
   const { data: dataUser, loading: loadingUser } = useGetUser();
 
   return (
-    <BaseLayout user={dataUser} loading={loadingUser}>
+    <BaseLayout
+      navClass='transparent'
+      user={dataUser}
+      loading={loadingUser}
+    >
       <BasePage>
         <Row>
           <Col md={{size: 8, offset: 2}}>
