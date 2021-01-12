@@ -4,6 +4,25 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 
+const pageVariants = {
+  initial: {
+    x:200,
+    opacity: 0
+  },
+  in: {
+    x: 0,
+    opacity: 1,
+  },
+  out: {
+    x:-100,
+    opacity: 0,
+    transition: {
+      duration: 0.2
+    }
+  },
+}
+
+
 const PageHeader = ({header}) =>
   <div className="page-header">
     <h1 className="page-header-title">{header}</h1>
@@ -43,18 +62,17 @@ const BasePage = props => {
           rel="canonical"
           href={`${process.env.BASE_URL}${canonicalPath ? canonicalPath : router.asPath}`} />
       </Head>
+
       <motion.div
         className={`${pageType} ${className}`}
-        layoutId='base-page'
-        initial={{x:2000, opacity: 0}}
-        animate={{x: 0, opacity: 1}}
-        transition={
-          {
-            type: 'spring',
-            stiffness: 50,
-            ease: 'backInOut'
-          }
-        }
+        initial='initial'
+        animate='in'
+        exit='out'
+        variants={pageVariants}
+        transition={{
+          type: "spring",
+          stiffness: 75
+        }}
       >
         <Wrapper>
           { header && <PageHeader header={header} /> }
@@ -66,22 +84,3 @@ const BasePage = props => {
 }
 
 export default BasePage;
-
-
-
-      // <motion.div className={`${pageType} ${className}`}
-      //   initial={{x:2000, opacity: 0}}
-      //   animate={{x: 0, opacity: 1}}
-      //   transition={
-      //     {
-      //       type: 'spring',
-      //       stiffness: 50,
-      //       ease: 'backInOut'
-      //     }
-      //   }
-      // >
-      //   <Wrapper>
-      //     { header && <PageHeader header={header} /> }
-      //     {children}
-      //   </Wrapper>
-      // </motion.div>
